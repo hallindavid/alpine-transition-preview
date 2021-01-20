@@ -2,215 +2,337 @@
 <html>
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
 </head>
 
 <body>
 
-    <div class="min-h-screen bg-gray-100" x-data="app_init()">
-        <header class="pb-24 bg-gradient-to-r from-light-blue-800 to-cyan-600">
-            <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:max-w-7xl lg:px-8">
-                <div class="relative flex flex-wrap items-center justify-center lg:justify-between">
-                    <!-- Logo -->
-                    <div class="absolute left-0 py-5 flex-shrink-0 lg:static">
-                        <a href="#">
-                            Alpine Transitions Preview
-                        </a>
-                    </div>
+<div class="min-h-screen bg-gray-100" x-data="app_init()"
+     x-init="window.setInterval(() => toggle_preview(), 3000)">
+    <header class="pb-24 bg-gradient-to-r from-light-blue-800 to-cyan-600">
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:max-w-7xl lg:px-8">
+            <div class="relative flex flex-wrap items-center justify-center lg:justify-between">
+                <!-- Logo -->
+                <div class="absolute left-0 py-5 flex-shrink-0 lg:static">
+                    Alpine.js Transitions Previewer
                 </div>
             </div>
-        </header>
-        <main class="-mt-24 pb-8">
-            <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:max-w-7xl lg:px-8">
-                <!-- Main 2 column grid -->
-                <div class="grid grid-cols-1 gap-4 items-start lg:grid-cols-2 lg:gap-8">
-                    <!-- Left column -->
-                    <div class="grid grid-cols-1 gap-4">
-                        <section>
-                            <div class="rounded-lg bg-gray-200 overflow-hidden shadow">
-                                <div class="rounded-tr-lg relative bg-white p-6">
-                                    <p class="text-sm text-gray-500">
-                                        This is where you'll copy/paste the transition code
-                                    </p>
+        </div>
+    </header>
+    <main class="-mt-24 pb-8">
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:max-w-7xl lg:px-8">
+            <!-- Main 2 column grid -->
+            <div class="grid grid-cols-1 gap-4 items-start lg:grid-cols-2 lg:gap-8">
+                <section>
+                    <div class="rounded-lg bg-gray-200 overflow-hidden shadow">
+                        <div class="rounded-tr-lg relative bg-white p-6">
+                            <p class="text-sm text-gray-500">
+                                This is where you'll copy/paste the transition code
+                            </p>
 
-                                    <div>
-                                        <label for="" class="block text-sm font-medium text-gray-700">
-                                            x-transition:enter
-                                        </label>
-                                        <div class="mt-1">
-                                            <input type="text" name=""
-                                                class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border border-gray-300 rounded-md">
-                                        </div>
-                                    </div>
-
-                                    <div>
-                                        <label for="" class="block text-sm font-medium text-gray-700">
-                                            x-transition:enter-start
-                                        </label>
-                                        <div class="mt-1">
-                                            <input type="text" name=""
-                                                class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border border-gray-300 rounded-md">
-                                        </div>
-                                    </div>
-
-                                    <div>
-                                        <label for="" class="block text-sm font-medium text-gray-700">
-                                            x-transition:enter-end
-                                        </label>
-                                        <div class="mt-1">
-                                            <input type="text" name=""
-                                                class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border border-gray-300 rounded-md">
-                                        </div>
-                                    </div>
-
-                                    <div>
-                                        <label for="" class="block text-sm font-medium text-gray-700">
-                                            x-transition:leave
-                                        </label>
-                                        <div class="mt-1">
-                                            <input type="text" name=""
-                                                class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border border-gray-300 rounded-md">
-                                        </div>
-                                    </div>
-
-                                    <div>
-                                        <label for="" class="block text-sm font-medium text-gray-700">
-                                            x-transition:leave-start
-                                        </label>
-                                        <div class="mt-1">
-                                            <input type="text" name=""
-                                                class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border border-gray-300 rounded-md">
-                                        </div>
-                                    </div>
-
-                                    <div>
-                                        <label for="" class="block text-sm font-medium text-gray-700">
-                                            x-transition:leave-end
-                                        </label>
-                                        <div class="mt-1">
-                                            <input type="text" name=""
-                                                class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border border-gray-300 rounded-md">
-                                        </div>
-                                    </div>
-
-                                    <div class="flex flex-row justify-end mt-2 space-x-1">
-                                        <button type="button" @click="showPreview=!showPreview"
-                                            class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
-                                            Toggle
-                                        </button>
-                                        <button type="button"
-                                            class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                                            Submit
-                                        </button>
-                                    </div>
+                            <div>
+                                <label for="trEnter" class="block text-sm font-medium text-gray-700">
+                                    x-transition:enter
+                                </label>
+                                <div class="mt-1">
+                                    <input type="text" x-model="trEnter" id="trEnter"
+                                           class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border border-gray-300 rounded-md p-2">
                                 </div>
                             </div>
-                        </section>
 
-                        <section>
-                            <div class="rounded-lg bg-gray-200 overflow-hidden shadow">
-                                <div class="rounded-tr-lg relative bg-white p-6">
-                                    <div>
-                                        <label for="about" class="block text-sm font-medium text-gray-700">
-                                            Transition Block eg. see below
-                                        </label>
-                                        <div class="mt-1">
-                                            <textarea id="about" name="about" rows="8"
-                                                class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border border-gray-300 rounded-md"></textarea>
-                                        </div>
-                                        <p class="mt-2 text-sm text-gray-500">copy paste a block of the transition
-                                            statements from tailwind ui eg..<br />
-                                        Entering: "ease-out duration-300"<br />
-                                        From: "opacity-0"<br />
-                                        To: "opacity-100"<br />
-                                        Leaving: "ease-in duration-200"<br />
-                                        From: "opacity-100"<br />
-                                        To: "opacity-0"</p>
-                                    </div>
-                                    <div class="flex flex-row justify-end mt-2">
-                                        <button type="submit"
-                                            class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                                            Try Parsing
-                                        </button>
-                                    </div>
+                            <div>
+                                <label for="trEnterStart" class="block text-sm font-medium text-gray-700">
+                                    x-transition:enter-start
+                                </label>
+                                <div class="mt-1">
+                                    <input type="text" x-model="trEnterStart" id="trEnterStart"
+                                           class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border border-gray-300 rounded-md p-2">
                                 </div>
                             </div>
-                        </section>
+
+                            <div>
+                                <label for="trEnterEnd" class="block text-sm font-medium text-gray-700">
+                                    x-transition:enter-end
+                                </label>
+                                <div class="mt-1">
+                                    <input type="text" x-model="trEnterEnd" id="trEnterEnd"
+                                           class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border border-gray-300 rounded-md p-2">
+                                </div>
+                            </div>
+
+                            <div>
+                                <label for="trLeave" class="block text-sm font-medium text-gray-700">
+                                    x-transition:leave
+                                </label>
+                                <div class="mt-1">
+                                    <input type="text" x-model="trLeave" id="trLeave"
+                                           class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border border-gray-300 rounded-md p-2">
+                                </div>
+                            </div>
+
+                            <div>
+                                <label for="trLeave" class="block text-sm font-medium text-gray-700">
+                                    x-transition:leave-start
+                                </label>
+                                <div class="mt-1">
+                                    <input type="text" x-model="trLeaveStart" id="trLeaveStart"
+                                           class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border border-gray-300 rounded-md p-2">
+                                </div>
+                            </div>
+
+                            <div>
+                                <label for="trLeave" class="block text-sm font-medium text-gray-700">
+                                    x-transition:leave-end
+                                </label>
+                                <div class="mt-1">
+                                    <input type="text" x-model="trLeaveEnd" id="trLeaveEnd"
+                                           class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border border-gray-300 rounded-md p-2">
+                                </div>
+                            </div>
+
+                            <div class="flex flex-row justify-end mt-2 space-x-1">
+                                <button type="button" @click="clear_fields()"
+                                        class="inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 justify-center">
+                                    Clear
+                                </button>
+                                <button type="button" @click="update_preview()"
+                                        class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 justify-center">
+                                    Submit
+                                </button>
+                            </div>
+                        </div>
                     </div>
+                </section>
+                <section>
+                    <div class="rounded-lg bg-gray-200 overflow-hidden shadow">
+                        <div
+                                class="rounded-tr-lg relative group bg-white p-6 focus-within:ring-2 focus-within:ring-inset focus-within:ring-cyan-500">
+                            <div class="flex flex-row justify-between items-center">
+                                <label class="block text-sm font-medium text-gray-700">
+                                    Preview Transition
+                                </label>
 
-                    <!-- Right column -->
-                    <div class="grid grid-cols-1 gap-4">
-                        <section>
-                            <div class="rounded-lg bg-gray-200 overflow-hidden shadow">
-                                <div class="rounded-tr-lg relative bg-white p-6">
-                                    <div>
-                                        <label for="about" class="block text-sm font-medium text-gray-700">
-                                            Transition output
-                                        </label>
-                                        <div class="mt-1">
-                                            <textarea id="about" name="about" rows="8"
-                                                class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border border-gray-300 rounded-md"></textarea>
-                                        </div>
-                                    </div>
+                                <div class="">
+                                    <template x-if="!autoToggle">
+                                        <button type="button" @click="autoToggle=!autoToggle"
+                                                class="inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 justify-center">
+                                            <template x-if="autoToggle">Disable AutoToggle</template>
+                                            Enable AutoToggle
+                                        </button>
+                                    </template>
+                                    <template x-if="autoToggle">
+                                        <button type="button" @click="autoToggle=!autoToggle"
+                                                class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                            Disable AutoToggle
+                                        </button>
+                                    </template>
+                                    <button type="button" @click="showPreview=!showPreview"
+                                            class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                        Manual Toggle
+                                    </button>
                                 </div>
                             </div>
-                        </section>
-                        <section>
-                            <div class="rounded-lg bg-gray-200 overflow-hidden shadow">
-                                <div
-                                    class="rounded-tr-lg relative group bg-white p-6 focus-within:ring-2 focus-within:ring-inset focus-within:ring-cyan-500">
-                                    <p class="text-sm text-gray-500">
-                                        Preview Transitions
-                                    </p>
 
-                                    <div
-                                        class="bg-gray-200 border-gray-400 border mt-3 rounded-md h-40 w-full flex justify-center transition">
-                                        <div x-show="showPreview" x-transition:enter="ease-out duration-300"
-                                            x-transition:enter-from="opacity-0" x-transition:enter-to="opacity-100"
-                                            x-transition:leave="ease-in duration-200"
-                                            x-transition:leave-from="opacity-100" x-transition:leave-to="opacity-0"
-                                            class="inline-block h-20 w-20 bg-white rounded-md mt-10 text-center py-3">
-                                            Hello world!
-                                        </div>
-                                    </div>
+                            <div
+                                    class="bg-gray-200 border-gray-400 border mt-3 rounded-md h-80 w-full"
+                                    x-ref="preview">
+                                <div class="origin-top-left absolute left-1/3 h-20 w-1/3 top-1/2 -mt-6 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 text-center py-6"
+                                     x-show="showPreview"
+                                     x-transition:enter="transition ease-out duration-100"
+                                     x-transition:enter-start="transform opacity-0 scale-95"
+                                     x-transition:enter-end="transform opacity-100 scale-100"
+                                     x-transition:leave="transition ease-in duration-75"
+                                     x-transition:leave-start="transform opacity-100 scale-100"
+                                     x-transition:leave-end="transform opacity-0 scale-95">
+                                    Hello world
                                 </div>
+
                             </div>
-                        </section>
+                        </div>
                     </div>
+                </section>
+
+                <section>
+                    <div class="rounded-lg bg-gray-200 overflow-hidden shadow">
+                        <div class="rounded-tr-lg relative bg-white p-6">
+                            <div>
+                                <label for="trParse" class="block text-sm font-medium text-gray-700">
+                                    Transition Block eg. see below
+                                </label>
+                                <div class="mt-1">
+                                            <textarea x-model="trParse" id="trParse" rows="8"
+                                                      class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border border-gray-300 rounded-md"></textarea>
+                                </div>
+                                <p class="mt-2 text-sm text-gray-500">Copy & paste a block of transition statements from
+                                    tailwind ui eg..<br/><br/>
+                                    Entering: "ease-out duration-300"<br/>
+                                    From: "opacity-0"<br/>
+                                    To: "opacity-100"<br/>
+                                    Leaving: "ease-in duration-200"<br/>
+                                    From: "opacity-100"<br/>
+                                    To: "opacity-0"</p>
+                            </div>
+                            <div class="flex flex-row justify-end mt-2">
+                                <button type="button" @click="try_parse()"
+                                        class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                    Try Parsing
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+
+                <section>
+                    <div class="rounded-lg bg-gray-200 overflow-hidden shadow">
+                        <div class="rounded-tr-lg relative bg-white p-6">
+                            <div>
+                                <label for="about" class="block text-sm font-medium text-gray-700">
+                                    Transition output
+                                </label>
+                                <div class="mt-1">
+                                            <textarea name="transition-output" rows="10"
+                                                      x-model="trOutput"
+                                                      class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 p-2 block w-full sm:text-sm border border-gray-300 rounded-md"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 lg:max-w-7xl">
+            <div class="border-t border-gray-200 py-8 text-sm text-gray-500 text-center sm:text-left flex flex-row justify-between">
+                <div class="flex flex-row justify-start space-x-3">
+                    <span>Created using</span>
+                    <a href="https://tailwindcss.com/" target="_blank">
+                        <svg viewBox="0 0 247 31" class="w-auto h-5">
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                  d="M25.517 0C18.712 0 14.46 3.382 12.758 10.146c2.552-3.382 5.529-4.65 8.931-3.805 1.941.482 3.329 1.882 4.864 3.432 2.502 2.524 5.398 5.445 11.722 5.445 6.804 0 11.057-3.382 12.758-10.145-2.551 3.382-5.528 4.65-8.93 3.804-1.942-.482-3.33-1.882-4.865-3.431C34.736 2.92 31.841 0 25.517 0zM12.758 15.218C5.954 15.218 1.701 18.6 0 25.364c2.552-3.382 5.529-4.65 8.93-3.805 1.942.482 3.33 1.882 4.865 3.432 2.502 2.524 5.397 5.445 11.722 5.445 6.804 0 11.057-3.381 12.758-10.145-2.552 3.382-5.529 4.65-8.931 3.805-1.941-.483-3.329-1.883-4.864-3.432-2.502-2.524-5.398-5.446-11.722-5.446z"
+                                  fill="#06B6D4"></path>
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                  d="M76.546 12.825h-4.453v8.567c0 2.285 1.508 2.249 4.453 2.106v3.463c-5.962.714-8.332-.928-8.332-5.569v-8.567H64.91V9.112h3.304V4.318l3.879-1.143v5.937h4.453v3.713zM93.52 9.112h3.878v17.849h-3.878v-2.57c-1.365 1.891-3.484 3.034-6.285 3.034-4.884 0-8.942-4.105-8.942-9.389 0-5.318 4.058-9.388 8.942-9.388 2.801 0 4.92 1.142 6.285 2.999V9.112zm-5.674 14.636c3.232 0 5.674-2.392 5.674-5.712s-2.442-5.711-5.674-5.711-5.674 2.392-5.674 5.711c0 3.32 2.442 5.712 5.674 5.712zm16.016-17.313c-1.364 0-2.477-1.142-2.477-2.463a2.475 2.475 0 012.477-2.463 2.475 2.475 0 012.478 2.463c0 1.32-1.113 2.463-2.478 2.463zm-1.939 20.526V9.112h3.879v17.849h-3.879zm8.368 0V.9h3.878v26.06h-3.878zm29.053-17.849h4.094l-5.638 17.849h-3.807l-3.735-12.03-3.771 12.03h-3.806l-5.639-17.849h4.094l3.484 12.315 3.771-12.315h3.699l3.734 12.315 3.52-12.315zm8.906-2.677c-1.365 0-2.478-1.142-2.478-2.463a2.475 2.475 0 012.478-2.463 2.475 2.475 0 012.478 2.463c0 1.32-1.113 2.463-2.478 2.463zm-1.939 20.526V9.112h3.878v17.849h-3.878zm17.812-18.313c4.022 0 6.895 2.713 6.895 7.354V26.96h-3.878V16.394c0-2.713-1.58-4.14-4.022-4.14-2.55 0-4.561 1.499-4.561 5.14v9.567h-3.879V9.112h3.879v2.285c1.185-1.856 3.124-2.749 5.566-2.749zm25.282-6.675h3.879V26.96h-3.879v-2.57c-1.364 1.892-3.483 3.034-6.284 3.034-4.884 0-8.942-4.105-8.942-9.389 0-5.318 4.058-9.388 8.942-9.388 2.801 0 4.92 1.142 6.284 2.999V1.973zm-5.674 21.775c3.232 0 5.674-2.392 5.674-5.712s-2.442-5.711-5.674-5.711-5.674 2.392-5.674 5.711c0 3.32 2.442 5.712 5.674 5.712zm22.553 3.677c-5.423 0-9.481-4.105-9.481-9.389 0-5.318 4.058-9.388 9.481-9.388 3.519 0 6.572 1.82 8.008 4.605l-3.34 1.928c-.79-1.678-2.549-2.749-4.704-2.749-3.16 0-5.566 2.392-5.566 5.604 0 3.213 2.406 5.605 5.566 5.605 2.155 0 3.914-1.107 4.776-2.749l3.34 1.892c-1.508 2.82-4.561 4.64-8.08 4.64zm14.472-13.387c0 3.249 9.661 1.285 9.661 7.89 0 3.57-3.125 5.497-7.003 5.497-3.591 0-6.177-1.607-7.326-4.177l3.34-1.927c.574 1.606 2.011 2.57 3.986 2.57 1.724 0 3.052-.571 3.052-2 0-3.176-9.66-1.391-9.66-7.781 0-3.356 2.909-5.462 6.572-5.462 2.945 0 5.387 1.357 6.644 3.713l-3.268 1.82c-.647-1.392-1.904-2.035-3.376-2.035-1.401 0-2.622.607-2.622 1.892zm16.556 0c0 3.249 9.66 1.285 9.66 7.89 0 3.57-3.124 5.497-7.003 5.497-3.591 0-6.176-1.607-7.326-4.177l3.34-1.927c.575 1.606 2.011 2.57 3.986 2.57 1.724 0 3.053-.571 3.053-2 0-3.176-9.66-1.391-9.66-7.781 0-3.356 2.908-5.462 6.572-5.462 2.944 0 5.386 1.357 6.643 3.713l-3.268 1.82c-.646-1.392-1.903-2.035-3.375-2.035-1.401 0-2.622.607-2.622 1.892z"
+                                  fill="#000"></path>
+                        </svg>
+                    </a>
+                    <a href="https://github.com/alpinejs/alpine" target="_blank" class="text-indigo-500 font-semibold">Alpine.js</a>
+                    <p>Not affiliated with alpine.js or tailwindcss at all. Just fantastic products</p>
+                </div>
+                <div class="flex flex-row space-x-3">
+                    <span>Created by
+                        <a class="text-indigo-500 font-semibold" target="_blank" href="https://davidhallin.com/">David Hallin</a>
+                    </span>
+                    <a href="https://github.com/hallindavid/alpine-transition-preview" target="_blank"><img
+                            src="/github.png" class="h-5"/></a>
+
+
                 </div>
             </div>
-        </main>
-        <footer>
-            <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 lg:max-w-7xl">
-                <div class="border-t border-gray-200 py-8 text-sm text-gray-500 text-center sm:text-left">Made with
-                    TailwindCss, and AlpineJs</div>
-            </div>
-        </footer>
-    </div>
+        </div>
+    </footer>
+</div>
 
-    <script>
+<script>
 
-        function app_init() {
-            return {
-                showPreview: true,
-                trEnter: 'transition',
-                trEnterStart: '',
-                trEnterEnd: '',
-                trLeave: '',
-                trLeaveStart: '',
-                trLeaveEnd: '',
-                trParse: '',
-                try_parse: {
-                    //this is where I need to write the code to parse the TW copied body into the transition variables
+    function app_init() {
+        return {
+            showPreview: true,
+            autoToggle: true,
+            trEnter: 'transition ease-out duration-100',
+            trEnterStart: 'transform opacity-0 scale-95',
+            trEnterEnd: 'transform opacity-100 scale-100',
+            trLeave: 'transition ease-in duration-75',
+            trLeaveStart: 'transform opacity-100 scale-100',
+            trLeaveEnd: 'transform opacity-0 scale-95',
+            trParse: '',
+            trOutput: '',
+            try_parse() {
+                var lines = this.trParse.split("\n");
+                if (lines.length > 0) {
+                    for (var i = 0; i < lines.length; i++) {
+                        var lineParts = lines[i].split(":");
+                        if (lineParts.length == 2) {
+                            // Line has : seperating the items
+                            var newClasses = lineParts[1].replace(/['"]+/g, '').trim();
+
+                            switch (i) {
+                                case 0:
+                                    this.trEnter = newClasses;
+                                    break;
+                                case 1:
+                                    this.trEnterStart = newClasses;
+                                    break;
+                                case 2:
+                                    this.trEnterEnd = newClasses;
+                                    break;
+                                case 3:
+                                    this.trLeave = newClasses;
+                                    break;
+                                case 4:
+                                    this.trLeaveStart = newClasses;
+                                    break;
+                                case 5:
+                                    this.trLeaveEnd = newClasses;
+                                    break;
+                            }
+                        }
+                    }
+                }
+                this.update_preview();
+            },
+            update_preview() {
+                this.$refs.preview.innerHTML = make_preview(this.trEnter, this.trEnterStart, this.trEnterEnd, this.trLeave, this.trLeaveStart, this.trLeaveEnd);
+                this.update_output();
+            },
+            update_output() {
+                this.trOutput = make_output(this.trEnter, this.trEnterStart, this.trEnterEnd, this.trLeave, this.trLeaveStart, this.trLeaveEnd);
+            },
+            clear_fields() {
+                this.trEnter = '';
+                this.trEnterStart = '';
+                this.trEnterEnd = '';
+                this.trLeave = '';
+                this.trLeaveStart = '';
+                this.trLeaveEnd = '';
+            },
+            toggle_preview() {
+                if (this.autoToggle) {
+                    this.showPreview = !this.showPreview;
                 }
             }
         }
+    }
+
+    function make_preview(e, ef, et, l, lf, lt) {
+        return `<div class="origin-top-left absolute left-1/3 h-20 w-1/3 top-1/2 -mt-6 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 text-center py-6"
+                                     x-show="showPreview"
+                                     x-transition:enter="${e}"
+                                     x-transition:enter-start="${ef}"
+                                     x-transition:enter-end="${et}"
+                                     x-transition:leave="${l}"
+                                     x-transition:leave-start="${lf}"
+                                     x-transition:leave-end="${lt}">
+                                    Hello world
+                                </div>`;
+    }
+
+    function make_output(e, ef, et, l, lf, lt) {
+        return `<div x-transition:enter="${e}"
+        x-transition:enter-start="${ef}"
+        x-transition:enter-end="${et}"
+        x-transition:leave="${l}"
+        x-transition:leave-start="${lf}"
+        x-transition:leave-end="${lt}"
+        x-show="showPreview">Hello world!</div>`;
+    }
 
 
-    </script>
+</script>
 </body>
 
 </html>
